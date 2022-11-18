@@ -8,12 +8,19 @@ body{
     justify-content: center;
     align-items: center;
 }
-.main-grid{
-    height: 90%;
-    width: 90%;
+#main-grid{
+    max-width: 800px;
+    max-height: 800px;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
     border: 1px solid red;
 }
 .square{
     width: 15px;
     height: 15px;
+    flex-grow: 1;
+    border: 1px solid black;
 }
