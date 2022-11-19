@@ -1,3 +1,4 @@
+// Const items.
 const grid = document.querySelector("#main-grid");
 const drawBtn = document.querySelector("#draw-btn");
 const resetBtn = document.querySelector("#reset-btn");
@@ -7,9 +8,9 @@ const setBtn = document.querySelector("#set-button");
 const colorPicker = document.querySelector("#color");
 const eraserBtn = document.querySelector("#eraser");
 const rainbowBtn = document.querySelector("#rainbow");
-const colorLabel = document.querySelector("#color-label");
+const colorBtn = document.querySelector("#color-button");
 
-
+// Let items.
 let isColorActive = true;
 let isRainbowActive = false;
 let isEraserActive = false;
@@ -17,7 +18,8 @@ let ismousedown = false;
 let color = "black";
 num = 10;
 
-// Creates a grid with the num value as param.
+// Functions
+// Creates a grid with the <num> value as param.
 function createGrid(num){
     for(let i=0; i<num; i++){
         const newRow = document.createElement("div");
@@ -44,7 +46,7 @@ function colorSquare(){
         }
     };
 };
-//
+// Same as <colorSquare()> but doesn care about <ismousedown>. 
 function clickSquare(){
     if(isColorActive){
         this.style.backgroundColor = `${colorPicker.value}`; 
@@ -54,7 +56,7 @@ function clickSquare(){
         this.style.backgroundColor = randomColor();
     }
 };
-//
+// Function that creates a random RGB color and returns it as a string.
 function randomColor(){
     let randomR = Math.floor(Math.random() * 256)
     let randomG = Math.floor(Math.random() * 256)
@@ -66,12 +68,17 @@ function randomColor(){
 function clearGrid(){
     grid.innerHTML = '';
 };
+// Function that contains the instructions for when the page finishes loading.
+function onLoad(){
+    colorPicker.value = "#333333";
+    colorBtn.classList.add("active");
+}
 
-
-
+// Running code.
+// Executes <createGrid()> function with <num=10> as default.
 createGrid(num);
 
-
+// Event listeners.
 // When mouse is pressed sets "ismousedown" to true.
 document.addEventListener('mousedown', ()=>{
     ismousedown = !ismousedown;
@@ -80,7 +87,7 @@ document.addEventListener('mousedown', ()=>{
 document.addEventListener('mouseup', ()=>{
     ismousedown = !ismousedown;
 });
-// Clears the grid and resets the range input value and display.
+// Empties the grid and replaces it with a new 10x10 one. It also sets all properties as default.
 resetBtn.addEventListener('click', () => {
     clearGrid();
     createGrid(10);
@@ -89,14 +96,17 @@ resetBtn.addEventListener('click', () => {
     isEraserActive = false;
     isRainbowActive = false;
     sizeRange.value = 10;
+    colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraserBtn.classList.remove("active");
     gridDisplay.textContent = "10 x 10";
-    colorPicker.value = "#000000"
+    colorPicker.value = "#333333";
 });
-
+// Updates the grid size display.
 sizeRange.addEventListener('input', () => {
     gridDisplay.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 });
-
+// Empties the grid and creates a new one by setting the <sizeRange> value as the num value.
 setBtn.addEventListener('click', () => {
     num = parseInt(sizeRange.value);
     clearGrid();
@@ -106,29 +116,38 @@ setBtn.addEventListener('click', () => {
     isEraserActive = false;
     isRainbowActive = false;
 });
-
+// Sets <isColorActive> to true when the mouse leaves the input. <isRainbowActive> and <isEraserActive> are set to false.
 colorPicker.addEventListener('mouseup', () => {
     isColorActive = true;
     isEraserActive = false;
     isRainbowActive = false;
     ismousedown = false;
 });
-
+// Sets <isEraserActive> to true when clicking <eraserBtn>. <isColorActive> and <isRainbowActive> are set to false.
 eraserBtn.addEventListener('click', () => {
     isEraserActive = true;
     isColorActive = false;
     isRainbowActive = false;
+    eraserBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    colorBtn.classList.remove("active");
 });
-
+// Sets <isRainbowActive> to true when clicking <rainbowBtn>. <isColorActive> and <isEraserActive> are set to false.
 rainbowBtn.addEventListener('click', () => {
     isColorActive = false;
     isEraserActive = false;
     isRainbowActive = true;
+    rainbowBtn.classList.add("active");
+    colorBtn.classList.remove("active");
+    eraserBtn.classList.remove("active");
 });
-
-colorLabel.add('mousedown', () => {
+// Sets <isColorActive> to true when clicking <colorBtn>. <isRainbowActive> and <isEraserActive> are set to false.
+colorBtn.addEventListener('click', () => {
     isColorActive = true;
     isEraserActive = false;
     isRainbowActive = false;
     ismousedown = false;
+    colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraserBtn.classList.remove("active");
 });

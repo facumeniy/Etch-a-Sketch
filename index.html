@@ -12,28 +12,36 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700;900&display=swap" rel="stylesheet">
 </head>
-<body>
+<!--Body onload-->
+<body onload="onLoad()">
     <div class="left-pannel">
         <div class="title-container">
             <h1>Etch a Sketch</h1>
         </div>
-        <div class="colorpicker-container">
-            <label id="color-label" for="color">Color mode</label>
+        <div class="container">
             <input id="color" type="color">
         </div>
-        <div class="eraser-container">
+        <div class="container">
+            <button class="button" id="color-button">Color Mode</button>
+        </div>
+        <div class="container">
             <button class="button" id="eraser">Eraser</button>
         </div>
-        <div class="rainbow-container">
+        <div class="container">
             <button class="button" id="rainbow">Rainbow mode</button>
         </div>
-        <div class="eraser-container">
+        <div class="container">
             <button class="button" id="reset-btn">Reset</button>
         </div>
-        <div class="grid-size-container">
+
+        <div class="container">
             <div class="range-display-container">
-                <h2 id="grid-size-display">10 x 10</h2>
-                <input type="range" id="range" name="" value="10" min="10" max="100">
+                <div class="range-display">
+                    <h2 id="grid-size-display">10 x 10</h2>
+                </div>
+                <div class="range-input">
+                    <input type="range" id="range" name="" value="10" min="10" max="100">
+                </div>
             </div>
             <div class="setbutton-container">
                 <button class="button" id="set-button">Set</button>
