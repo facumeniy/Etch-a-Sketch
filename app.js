@@ -4,6 +4,9 @@ const resetBtn = document.querySelector("#reset-btn");
 const gridDisplay = document.querySelector("#grid-size-display");
 const sizeRange = document.querySelector("#range");
 const setBtn = document.querySelector("#set-button");
+const colorPicker = document.querySelector("#color");
+const eraserBtn = document.querySelector("#eraser");
+
 let ismousedown = false;
 let color = "black";
 num = 10;
@@ -18,6 +21,7 @@ function createGrid(num){
             newSquare.classList.add("square");
             newRow.appendChild(newSquare);
             newSquare.addEventListener('mouseover', colorSquare);
+            newSquare.addEventListener('click', clickSquare);
         }
         grid.appendChild(newRow);
      }
@@ -25,13 +29,13 @@ function createGrid(num){
 // Colors the square ONLY when <ismousedown> is true.
 function colorSquare(){
     if(ismousedown){
-        if(color === "black"){
-            this.style.backgroundColor = "black"; 
-        }else if(color === "white"){
-            this.style.backgroundColor = "white"; 
-        }
+        this.style.backgroundColor = `${colorPicker.value}`; 
     };
 };
+//
+function clickSquare(){
+    this.style.backgroundColor = `${colorPicker.value}`;
+}
 // Clears the grid. <innerHTML> edits all text inside <grid> and makes it empty.
 function clearGrid(){
     grid.innerHTML = '';
@@ -39,13 +43,8 @@ function clearGrid(){
 
 
 
-
-
-
-
-
-
 createGrid(num);
+
 
 // When mouse is pressed sets "ismousedown" to true.
 document.addEventListener('mousedown', ()=>{
@@ -59,8 +58,10 @@ document.addEventListener('mouseup', ()=>{
 resetBtn.addEventListener('click', () => {
     clearGrid();
     createGrid(10);
+    ismousedown = false;
     sizeRange.value = 10;
     gridDisplay.textContent = "10";
+    colorPicker.value = "#000000"
 });
 
 sizeRange.addEventListener('input', () => {
@@ -71,5 +72,13 @@ setBtn.addEventListener('click', () => {
     num = parseInt(sizeRange.value);
     clearGrid();
     createGrid(num);
+    ismousedown = false;
 });
 
+colorPicker.addEventListener('mouseup', () => {
+    ismousedown = false;
+});
+
+eraserBtn.addEventListener('click', () => {
+    colorPicker.value = "#ffffff";
+});
