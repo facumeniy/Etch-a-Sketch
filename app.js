@@ -115,6 +115,9 @@ setBtn.addEventListener('click', () => {
     isColorActive = true;
     isEraserActive = false;
     isRainbowActive = false;
+    eraserBtn.classList.remove("active");
+    rainbowBtn.classList.remove("active");
+    colorBtn.classList.add("active");
 });
 // Sets <isColorActive> to true when the mouse leaves the input. <isRainbowActive> and <isEraserActive> are set to false.
 colorPicker.addEventListener('mouseup', () => {
