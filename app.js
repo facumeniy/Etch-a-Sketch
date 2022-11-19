@@ -7,6 +7,7 @@ const setBtn = document.querySelector("#set-button");
 const colorPicker = document.querySelector("#color");
 const eraserBtn = document.querySelector("#eraser");
 
+let isEraserActive = false;
 let ismousedown = false;
 let color = "black";
 num = 10;
@@ -29,12 +30,20 @@ function createGrid(num){
 // Colors the square ONLY when <ismousedown> is true.
 function colorSquare(){
     if(ismousedown){
-        this.style.backgroundColor = `${colorPicker.value}`; 
+        if(!isEraserActive){
+            this.style.backgroundColor = `${colorPicker.value}`; 
+        }else if(isEraserActive){
+            this.style.backgroundColor = `#ffffff`; 
+        }
     };
 };
 //
 function clickSquare(){
-    this.style.backgroundColor = `${colorPicker.value}`;
+    if(!isEraserActive){
+        this.style.backgroundColor = `${colorPicker.value}`; 
+    }else if(isEraserActive){
+        this.style.backgroundColor = `#ffffff`; 
+    }
 }
 // Clears the grid. <innerHTML> edits all text inside <grid> and makes it empty.
 function clearGrid(){
@@ -59,13 +68,14 @@ resetBtn.addEventListener('click', () => {
     clearGrid();
     createGrid(10);
     ismousedown = false;
+    isEraserActive = false;
     sizeRange.value = 10;
-    gridDisplay.textContent = "10";
+    gridDisplay.textContent = "10 x 10";
     colorPicker.value = "#000000"
 });
 
 sizeRange.addEventListener('input', () => {
-    gridDisplay.textContent = sizeRange.value;
+    gridDisplay.textContent = `${sizeRange.value} x ${sizeRange.value}`;
 });
 
 setBtn.addEventListener('click', () => {
@@ -73,12 +83,14 @@ setBtn.addEventListener('click', () => {
     clearGrid();
     createGrid(num);
     ismousedown = false;
+    isEraserActive = false;
 });
 
 colorPicker.addEventListener('mouseup', () => {
+    isEraserActive = false;
     ismousedown = false;
 });
 
 eraserBtn.addEventListener('click', () => {
-    colorPicker.value = "#ffffff";
+    isEraserActive = true;
 });
