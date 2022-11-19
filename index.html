@@ -4,28 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Etch a Sketch</title>
+    <title>Etch A Sketch</title>
+    <!--Stylesheet-->
     <link rel="stylesheet" href="main.css">
+    <!--Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="left-pannel">
         <div class="title-container">
             <h1>Etch a Sketch</h1>
         </div>
-        <div class="colorpicker-container container">
+        <div class="colorpicker-container">
+            <label id="color-label" for="color">Color mode</label>
             <input id="color" type="color">
-            <button id="eraser">ERASER</button>
         </div>
-        <div class="rainbow-container container">
-            <button id="rainbow">RAINBOW MODE</button>
+        <div class="eraser-container">
+            <button class="button" id="eraser">Eraser</button>
         </div>
-        <div class="eraser-container container">
-            <button id="reset-btn">RESET</button>
+        <div class="rainbow-container">
+            <button class="button" id="rainbow">Rainbow mode</button>
         </div>
-        <div class="grid-size-container container">
-            <h2 id="grid-size-display">10 x 10</h2>
-            <input type="range" id="range" name="" value="10" min="10" max="100">
-            <button id="set-button">SET</button>
+        <div class="eraser-container">
+            <button class="button" id="reset-btn">Reset</button>
+        </div>
+        <div class="grid-size-container">
+            <div class="range-display-container">
+                <h2 id="grid-size-display">10 x 10</h2>
+                <input type="range" id="range" name="" value="10" min="10" max="100">
+            </div>
+            <div class="setbutton-container">
+                <button class="button" id="set-button">Set</button>
+            </div>
         </div>
     </div>
     <div id="main-grid"></div>

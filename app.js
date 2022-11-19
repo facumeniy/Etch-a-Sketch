@@ -7,6 +7,8 @@ const setBtn = document.querySelector("#set-button");
 const colorPicker = document.querySelector("#color");
 const eraserBtn = document.querySelector("#eraser");
 const rainbowBtn = document.querySelector("#rainbow");
+const colorLabel = document.querySelector("#color-label");
+
 
 let isColorActive = true;
 let isRainbowActive = false;
@@ -44,12 +46,14 @@ function colorSquare(){
 };
 //
 function clickSquare(){
-    if(!isEraserActive){
+    if(isColorActive){
         this.style.backgroundColor = `${colorPicker.value}`; 
     }else if(isEraserActive){
         this.style.backgroundColor = `#ffffff`; 
+    }else if(isRainbowActive){
+        this.style.backgroundColor = randomColor();
     }
-}
+};
 //
 function randomColor(){
     let randomR = Math.floor(Math.random() * 256)
@@ -120,4 +124,11 @@ rainbowBtn.addEventListener('click', () => {
     isColorActive = false;
     isEraserActive = false;
     isRainbowActive = true;
+});
+
+colorLabel.add('mousedown', () => {
+    isColorActive = true;
+    isEraserActive = false;
+    isRainbowActive = false;
+    ismousedown = false;
 });
