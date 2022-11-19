@@ -9,7 +9,19 @@
 </head>
 <body>
     <div class="left-pannel">
-        <button id="draw-btn">draw</button>
+        <div class="title-container">
+            <h1>Etch a Sketch</h1>
+        </div>
+        <div class="colorpicker-container container"></div>
+        <div class="eraser-container container">
+            <button id="reset-btn">RESET</button>
+        </div>
+        <div class="grid-size-container container">
+            <h2 id="grid-size-display">10</h2>
+            <input type="range" id="range" name="" value="10" min="10" max="100">
+            <button id="set-button">SET</button>
+        </div>
+        <div class="reset-container container"></div>
     </div>
     <div id="main-grid"></div>
     <div class="right-pannel"></div>
