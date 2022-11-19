@@ -6,7 +6,10 @@ const sizeRange = document.querySelector("#range");
 const setBtn = document.querySelector("#set-button");
 const colorPicker = document.querySelector("#color");
 const eraserBtn = document.querySelector("#eraser");
+const rainbowBtn = document.querySelector("#rainbow");
 
+let isColorActive = true;
+let isRainbowActive = false;
 let isEraserActive = false;
 let ismousedown = false;
 let color = "black";
@@ -30,10 +33,12 @@ function createGrid(num){
 // Colors the square ONLY when <ismousedown> is true.
 function colorSquare(){
     if(ismousedown){
-        if(!isEraserActive){
+        if(isColorActive){
             this.style.backgroundColor = `${colorPicker.value}`; 
         }else if(isEraserActive){
             this.style.backgroundColor = `#ffffff`; 
+        }else if(isRainbowActive){
+            this.style.backgroundColor = randomColor(); 
         }
     };
 };
@@ -45,6 +50,14 @@ function clickSquare(){
         this.style.backgroundColor = `#ffffff`; 
     }
 }
+//
+function randomColor(){
+    let randomR = Math.floor(Math.random() * 256)
+    let randomG = Math.floor(Math.random() * 256)
+    let randomB = Math.floor(Math.random() * 256)
+    let randColor = `rgb(${randomR}, ${randomG}, ${randomB})`
+    return randColor;
+};
 // Clears the grid. <innerHTML> edits all text inside <grid> and makes it empty.
 function clearGrid(){
     grid.innerHTML = '';
@@ -68,7 +81,9 @@ resetBtn.addEventListener('click', () => {
     clearGrid();
     createGrid(10);
     ismousedown = false;
+    isColorActive = true;
     isEraserActive = false;
+    isRainbowActive = false;
     sizeRange.value = 10;
     gridDisplay.textContent = "10 x 10";
     colorPicker.value = "#000000"
@@ -83,14 +98,26 @@ setBtn.addEventListener('click', () => {
     clearGrid();
     createGrid(num);
     ismousedown = false;
+    isColorActive = true;
     isEraserActive = false;
+    isRainbowActive = false;
 });
 
 colorPicker.addEventListener('mouseup', () => {
+    isColorActive = true;
     isEraserActive = false;
+    isRainbowActive = false;
     ismousedown = false;
 });
 
 eraserBtn.addEventListener('click', () => {
     isEraserActive = true;
+    isColorActive = false;
+    isRainbowActive = false;
+});
+
+rainbowBtn.addEventListener('click', () => {
+    isColorActive = false;
+    isEraserActive = false;
+    isRainbowActive = true;
 });
