@@ -125,6 +125,9 @@ colorPicker.addEventListener('mouseup', () => {
     isEraserActive = false;
     isRainbowActive = false;
     ismousedown = false;
+    colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraserBtn.classList.remove("active");
 });
 // Sets <isEraserActive> to true when clicking <eraserBtn>. <isColorActive> and <isRainbowActive> are set to false.
 eraserBtn.addEventListener('click', () => {
