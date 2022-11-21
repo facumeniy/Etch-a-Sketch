@@ -121,11 +121,11 @@ setBtn.addEventListener('click', () => {
 });
 // Sets <isColorActive> to true when the mouse leaves the input. <isRainbowActive> and <isEraserActive> are set to false.
 colorPicker.addEventListener('mouseup', () => {
-    isColorActive = true;
+    isColorActive = false;
     isEraserActive = false;
     isRainbowActive = false;
     ismousedown = false;
-    colorBtn.classList.add("active");
+    colorBtn.classList.remove("active");
     rainbowBtn.classList.remove("active");
     eraserBtn.classList.remove("active");
 });
@@ -156,10 +156,5 @@ colorBtn.addEventListener('click', () => {
     colorBtn.classList.add("active");
     rainbowBtn.classList.remove("active");
     eraserBtn.classList.remove("active");
-});
-
-colorBtn.addEventListener('mouseleave', () => {
-    ismousedown = false;
-
 });
 
