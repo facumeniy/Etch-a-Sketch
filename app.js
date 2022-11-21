@@ -157,3 +157,9 @@ colorBtn.addEventListener('click', () => {
     rainbowBtn.classList.remove("active");
     eraserBtn.classList.remove("active");
 });
+
+colorBtn.addEventListener('mouseleave', () => {
+    ismousedown = false;
+
+});
+
